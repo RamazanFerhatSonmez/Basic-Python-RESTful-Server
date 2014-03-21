@@ -3,20 +3,20 @@ Basic-Python-RESTful-Server
 
 A basic python RESTful Server in Flask integrated with Luminoso Python Client
 
-Problem
+## Problem to solve
 
 We had an issue in that our web application was developed in PHP and that we had a new requirement in interfacing our web application with the Luminoso API. Luminoso have a Python Client to do the authentication with their server.
 
-How we solved it
+## How we solved it
 
 We decide to create a basic python RESTful server and include the Luminoso Python client library in the calls.
 
-What components we used
+## What components we used
 
 Flask micro framework - http://flask.pocoo.org/
 Luminoso python client - https://github.com/LuminosoInsight/luminoso-api-client-python
 
-How to setup
+## How to setup
 
 During development we setup an virtual environment, here is how we did that.
 
@@ -59,7 +59,7 @@ As I'm going to use the Luminoso Python client, I need to install it
 
 $ pip install luminoso_api
 
-Run the rest-server
+## Run the rest-server
 
 $ python rest-server.py &
 
@@ -67,7 +67,7 @@ You can test it from a browser or a RESTful clinet
 
 http://127.0.0.1:5000/api/v1.0/test
 
-PHP Code
+## PHP Code
 
 Our web application is built on codeigniter - and we been using the CodeIgniter-REST Client - https://github.com/philsturg
 eon/codeigniter-restclient
@@ -107,7 +107,7 @@ Here is how we code the call i PHP to call the basic python RESTful server
 	}
 
 
-How to adopt for other python clients
+## How to adopt for other python clients
 
 It is easy to adopt for other python clients - just replace the Luminoso puthon client details with the python client that you need to use.
 
