@@ -27,7 +27,7 @@ def not_found(error):
     app.logger.error('Not found - 404')
     return make_response(jsonify( { 'error': 'Not found' } ), 404)
 
-@app.route('/api/v1.0/test', methods = ['GET'])
+@app.route('/api/v1.0/test', methods = ['GET','POST'])
 def get_test():
 
     data = {
@@ -45,7 +45,7 @@ def get_test():
     return resp
 #    return "ECHO: GET\n"
 
-@app.route('/api/v1.0/test', methods = ['POST'])
+@app.route('/api/v1.0/test', methods = ['GET','POST'])
 def post_test():
     if request.headers['Content-Type'] == 'text/plain':
         app.logger.info('Echo:' + request.data)
@@ -68,12 +68,12 @@ def post_test():
 #
 #   Get list of projects
 #
-@app.route('/api/v1.0/get_projects', methods = ['GET'])
+@app.route('/api/v1.0/get_projects', methods = ['GET','POST'])
 def get_luminoso():
     app.logger.info('Get from luminoso')
     
     client = LuminosoClient.connect(request.args.get('luminoso_account'),
-                                    username=request.args.get('luminoso_account_name'), 
+                                    username=request.args.get('luminoso_user_name'), 
                                     password=request.args.get('luminoso_password'))
     project_info_list = client.get()
     
@@ -87,7 +87,7 @@ def get_luminosocreate():
     app.logger.info('Create a project on Luminoso')
     
     client = LuminosoClient.connect(request.args.get('luminoso_account'),
-                                    username=request.args.get('luminoso_account_name'), 
+                                    username=request.args.get('luminoso_user_name'), 
                                     password=request.args.get('luminoso_password'))
     # Create a new project by POSTing its name
     project_id = client.post(name=request.args.get('project_name'))['project_id']
@@ -103,7 +103,7 @@ def get_update_docs():
     app.logger.info('Upload documents Luminoso')
     
     client = LuminosoClient.connect(request.args.get('luminoso_account'),
-                                    username=request.args.get('luminoso_account_name'), 
+                                    username=request.args.get('luminoso_user_name'), 
                                     password=request.args.get('luminoso_password'))
     # Create a new project by POSTing its name
     project = client.get(name=request.args.get('project_name'))[0]
@@ -128,14 +128,14 @@ def get_update_docs():
 #
 #  Delete project
 #
-@app.route('/api/v1.0/delete_project', methods = ['GET'])
+@app.route('/api/v1.0/delete_project', methods = ['GET', 'POST'])
 def get_luminosodelete():
     app.logger.info('Delete a project on Luminoso')
     client = LuminosoClient.connect(request.args.get('luminoso_account'),
-                                    username=request.args.get('luminoso_account_name'), 
+                                    username=request.args.get('luminoso_user_name'), 
                                     password=request.args.get('luminoso_password'))
    # Delete new project by POSTing its name
-    projects.delete(request.args.get('project_id'))
+    client.delete(request.args.get('project_id'))
     
     return "Project Deleted "
 #
@@ -147,7 +147,7 @@ def get_correlation():
     app.logger.info('Get Correlation')
     
     client = LuminosoClient.connect(request.args.get('luminoso_account'),
-                                    username=request.args.get('luminoso_account_name'), 
+                                    username=request.args.get('luminoso_user_name'), 
                                     password=request.args.get('luminoso_password'))
     
     project = client.get(name=request.args.get('project_name'))[0]
@@ -165,19 +165,16 @@ def get_correlation():
 #
 #   Set Topics Data
 #
-@app.route('/api/v1.0/post_set_topics', methods = ['GET'])
+@app.route('/api/v1.0/post_set_topics', methods = ['GET', 'POST'])
 def post_set_topics():
-    
-    # In[1]:
-    app.logger.info('Echo:' + json.dumps(request.json))
+    app.logger.info('Set the topics')
     # see API documentation: https://api.luminoso.com/v4/
     # use account # and username provisioned
-    project_name = "GP english sample"
     client = LuminosoClient.connect(request.args.get('luminoso_account'),
-                                    username=request.args.get('luminoso_account_name'), 
+                                    username=request.args.get('luminoso_user_name'), 
                                     password=request.args.get('luminoso_password'))
     # Get project id from project name:
-    project = client.get(name=project_name)[0]
+    project = client.get(name=request.args.get('project_name'))[0]
     project = client.change_path(project['project_id'])
     # delete and then recreate topics
     topics = project.get('topics/')
