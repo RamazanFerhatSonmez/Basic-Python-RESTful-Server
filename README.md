@@ -13,8 +13,8 @@ We decide to create a basic python RESTful server and include the Luminoso Pytho
 
 ## What components we used
 
-Flask micro framework - http://flask.pocoo.org/
-Luminoso python client - https://github.com/LuminosoInsight/luminoso-api-client-python
+1. Flask micro framework - http://flask.pocoo.org/
+2. Luminoso python client - https://github.com/LuminosoInsight/luminoso-api-client-python
 
 ## How to setup
 
