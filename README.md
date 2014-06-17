@@ -63,7 +63,7 @@ $ pip install luminoso_api
 
 $ python rest-server.py &
 
-You can test it from a browser or a RESTful clinet
+You can test it from a browser or a RESTful client
 
 http://127.0.0.1:5000/api/v1.0/test
 
