@@ -109,5 +109,5 @@ Here is how we code the call i PHP to call the basic python RESTful server
 
 ## How to adopt for other python clients
 
-It is easy to adopt for other python clients - just replace the Luminoso puthon client details with the python client that you need to use.
+It is easy to adopt for other python clients - just replace the Luminoso python client details with the python client that you need to use.
 
