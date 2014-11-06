@@ -41,11 +41,11 @@ Installing distribute............done.
 
 Now, whenever you want to work on a project, you only have to activate the corresponding environment. On OS X and Linux, do the following:
 
-$ . venv/bin/activate
+$ . env/bin/activate
 
 If you are a Windows user, the following command is for you:
 
-$ venv\scripts\activate
+$ env\scripts\activate
 
 Either way, you should now be using your virtualenv (notice how the prompt of your shell has changed to show the active environment).
 
@@ -69,10 +69,7 @@ http://127.0.0.1:5000/api/v1.0/test
 
 ## PHP Code
 
-Our web application is built on codeigniter - and we been using the CodeIgniter-REST Client - https://github.com/philsturg
-eon/codeigniter-restclient
-
-Here is how we code the call i PHP to call the basic python RESTful server
+The web application is built on codeigniter, here is how we code the call i PHP to call the basic python RESTful server
 
 	public function get_luminoso_score($project_name, $article_text) 
 	{
